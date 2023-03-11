@@ -1,5 +1,5 @@
 FROM debian:11 as builder
-ARG PDNS_VERSION=4.6.4
+ARG PDNS_VERSION=4.7.3
 
 WORKDIR /build
 RUN apt update && \
