@@ -1,5 +1,5 @@
 FROM debian:11 as builder
-ARG PDNS_VERSION=4.7.3
+ARG PDNS_VERSION=4.6.4
 
 WORKDIR /build
 RUN apt update && \
@@ -12,10 +12,11 @@ RUN ./configure --with-modules='bind gsqlite3' && \
     make install
 RUN mkdir -p /usr/local/share/pdns && cp modules/gsqlite3backend/schema.sqlite3.sql /usr/local/share/pdns/schema.sqlite3.sql
 
-FROM debian:11-slim
+FROM debian:11-slim@sha256:403e06393d6b9dcb506eeef2adba9e30a97139c54e4c90d55254049f7d224081
 
 RUN apt update && apt install -y curl sqlite3 luajit && apt clean
 
+# Reminder: There's a .dockerignore here.
 ADD entrypoint.sh /entrypoint/script
 
 COPY --from=builder /usr/local /usr/local
