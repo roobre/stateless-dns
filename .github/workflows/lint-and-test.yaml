@@ -39,8 +39,19 @@ jobs:
 
   docker-build:
     runs-on: ubuntu-latest
+    working-directory: build
     steps:
       - uses: actions/checkout@v3
-      - run: |
-          cd build
-          docker build . -t pdns-stateless:ci
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository }}-ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
