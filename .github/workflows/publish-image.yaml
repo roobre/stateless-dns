@@ -17,6 +17,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
         run: |
+          cd build
           docker build \
             -t ghcr.io/${{ github.repository }}:"$GITHUB_REF_NAME" \
             -t ghcr.io/${{ github.repository }}:latest

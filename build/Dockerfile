@@ -17,7 +17,6 @@ FROM debian:11-slim@sha256:403e06393d6b9dcb506eeef2adba9e30a97139c54e4c90d552540
 
 RUN apt update && apt install -y curl sqlite3 luajit && apt clean
 
-# Reminder: There's a .dockerignore here.
 ADD entrypoint.sh /entrypoint/script
 
 COPY --from=builder /usr/local /usr/local
