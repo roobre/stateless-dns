@@ -133,7 +133,7 @@ pdns:
   image:
     registry: ghcr.io  # Image registry
     repository: txqueuelen/stateless-dns/powerdns  # Image repository
-    tag: v4.7.3@sha256:0928cb4352106fb900cec07dd097a502caa09be3caf7bf73b90774dc867e2789  # Image tag
+    tag: v4.7.3@sha256:3b14c8a706f3bada711c7dc61cdd68aa100c82df935612c681c04c46ff87e1cb  # Image tag
     pullPolicy: IfNotPresent  # Image pull policy.
 
   securityContext:
